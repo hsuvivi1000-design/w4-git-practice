@@ -3,7 +3,11 @@
    學生練習：修改顏色、字體大小等
    ============================ */
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   font-family: 'Noto Sans TC', sans-serif;
@@ -33,8 +37,15 @@ header {
   padding: 20px 24px;
 }
 
-header h1 { font-size: 20px; }
-header .subtitle { font-size: 13px; opacity: 0.85; margin-top: 4px; }
+header h1 {
+  font-size: 20px;
+}
+
+header .subtitle {
+  font-size: 13px;
+  opacity: 0.85;
+  margin-top: 4px;
+}
 
 #chat-box {
   height: 360px;
@@ -92,9 +103,6 @@ header .subtitle { font-size: 13px; opacity: 0.85; margin-top: 4px; }
 }
 
 .input-area button {
-  /* 練習：把按鈕顏色改成你喜歡的顏色
-     conflict-a 分支：改成 #4f8ef7（藍色）
-     conflict-b 分支：改成 #e84393（粉色）  */
   /* 深藤色（Fuka-fuji）— 深藤紫 */
   background: #6f4e8c;
   color: white;
@@ -112,7 +120,7 @@ header .subtitle { font-size: 13px; opacity: 0.85; margin-top: 4px; }
 /* ===== feature/dark-mode 新增 ===== */
 .dark-toggle {
   margin-top: 8px;
-  background: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.2);
   border: none;
   color: white;
   padding: 4px 12px;
@@ -121,9 +129,30 @@ header .subtitle { font-size: 13px; opacity: 0.85; margin-top: 4px; }
   font-size: 12px;
 }
 
-body.dark { background-color: #1e1e2e; }
-body.dark .container { background: #313244; color: #cdd6f4; }
-body.dark header { background: #1e1e2e; }
-body.dark .message.bot { background: #45475a; color: #cdd6f4; }
-body.dark .input-area { border-top-color: #45475a; }
-body.dark .input-area input { background: #45475a; color: #cdd6f4; border-color: #585b70; }
+body.dark {
+  background-color: #1e1e2e;
+}
+
+body.dark .container {
+  background: #313244;
+  color: #cdd6f4;
+}
+
+body.dark header {
+  background: #1e1e2e;
+}
+
+body.dark .message.bot {
+  background: #45475a;
+  color: #cdd6f4;
+}
+
+body.dark .input-area {
+  border-top-color: #45475a;
+}
+
+body.dark .input-area input {
+  background: #45475a;
+  color: #cdd6f4;
+  border-color: #585b70;
+}
