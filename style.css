@@ -1,7 +1,8 @@
 /* ============================
-   W4 練習 Chatbot 樣式
-   學生練習：修改顏色、字體大小等
+   W4 練習 Chatbot — 現代化樣式
    ============================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+TC:wght@400;500&display=swap');
 
 * {
   box-sizing: border-box;
@@ -10,149 +11,218 @@
 }
 
 body {
-  font-family: 'Noto Sans TC', sans-serif;
-  /* 練習：把背景色改成你喜歡的顏色 */
-  /* 和紙米白 — 日系背景色 */
-  background-color: #f5f0e8;
+  font-family: 'Inter', 'Noto Sans TC', sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  padding: 16px;
 }
 
+/* ── 主容器：毛玻璃卡片 ── */
 .container {
-  background: #fffdf7;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(90, 60, 80, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
   width: 480px;
-  max-width: 95vw;
+  max-width: 100%;
+  overflow: hidden;
+  box-shadow:
+    0 32px 64px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+/* ── Header ── */
+header {
+  background: linear-gradient(135deg, #6f4e8c, #9b59b6);
+  padding: 20px 24px 18px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
   overflow: hidden;
 }
 
-header {
-  /* 練習：把標題列顏色從藍色改成其他顏色 */
-  /* 藤色（Fuji-iro）— 日本傳統藤紫色 */
-  background: #6f4e8c;
-  color: #fff;
-  padding: 20px 24px;
+header::after {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 120px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
 }
 
 header h1 {
-  font-size: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 header .subtitle {
-  font-size: 13px;
-  opacity: 0.85;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
   margin-top: 4px;
+  letter-spacing: 0.2px;
 }
 
+/* ── 線上狀態小點 ── */
+header h1::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #4ade80;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #4ade80;
+  flex-shrink: 0;
+}
+
+/* ── 聊天區域 ── */
 #chat-box {
-  height: 360px;
+  height: 380px;
   overflow-y: auto;
-  padding: 20px;
+  padding: 20px 16px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+  scroll-behavior: smooth;
 }
 
+#chat-box::-webkit-scrollbar {
+  width: 4px;
+}
+
+#chat-box::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#chat-box::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+}
+
+/* ── 訊息氣泡 ── */
 .message {
-  max-width: 75%;
-  padding: 10px 14px;
-  border-radius: 12px;
+  max-width: 78%;
+  padding: 10px 15px;
+  border-radius: 18px;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.55;
+  word-break: break-word;
+  animation: fadeUp 0.2s ease-out;
 }
 
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Bot 訊息 */
 .message.bot {
-  /* 薄萌黃（Usumoeji）— 淡抹茶綠 */
-  background: #e8f0e0;
-  color: #3a3a3a;
+  background: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
   align-self: flex-start;
   border-bottom-left-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* 使用者訊息 */
 .message.user {
-  /* 練習：把使用者訊息顏色從綠色改成你喜歡的顏色 */
-  /* 撫子色（Nadeshiko）— 日本石竹花粉 */
-  background: #d4607a;
-  color: white;
+  background: linear-gradient(135deg, #6f4e8c, #9b59b6);
+  color: #fff;
   align-self: flex-end;
   border-bottom-right-radius: 4px;
+  box-shadow: 0 4px 12px rgba(111, 78, 140, 0.4);
 }
 
+/* ── 輸入區域 ── */
 .input-area {
   display: flex;
-  padding: 16px;
+  align-items: center;
+  padding: 14px 16px;
   gap: 10px;
-  border-top: 1px solid #e8dfd0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.15);
 }
 
 .input-area input {
   flex: 1;
-  padding: 10px 14px;
-  border: 1px solid #c8b8d0;
-  border-radius: 8px;
+  padding: 11px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
   font-size: 14px;
+  color: #f1f5f9;
   outline: none;
-  background: #fdfaf5;
+  transition: border-color 0.2s, background 0.2s;
+  font-family: inherit;
+}
+
+.input-area input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
 }
 
 .input-area input:focus {
-  border-color: #6f4e8c;
+  border-color: rgba(155, 89, 182, 0.7);
+  background: rgba(255, 255, 255, 0.12);
 }
 
+/* 送出按鈕 */
 .input-area button {
-  /* 深藤色（Fuka-fuji）— 深藤紫 */
-  background: #6f4e8c;
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, #6f4e8c, #9b59b6);
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
+  border-radius: 50%;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 4px 12px rgba(111, 78, 140, 0.45);
 }
 
 .input-area button:hover {
-  opacity: 0.85;
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(111, 78, 140, 0.6);
 }
 
-/* ===== feature/dark-mode 新增 ===== */
+.input-area button:active {
+  transform: scale(0.95);
+}
+
+/* ── Dark toggle ── */
 .dark-toggle {
   margin-top: 8px;
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
   padding: 4px 12px;
-  border-radius: 6px;
+  border-radius: 12px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 11px;
+  width: fit-content;
+  transition: background 0.2s;
 }
 
-body.dark {
-  background-color: #1e1e2e;
-}
-
-body.dark .container {
-  background: #313244;
-  color: #cdd6f4;
-}
-
-body.dark header {
-  background: #1e1e2e;
-}
-
-body.dark .message.bot {
-  background: #45475a;
-  color: #cdd6f4;
-}
-
-body.dark .input-area {
-  border-top-color: #45475a;
-}
-
-body.dark .input-area input {
-  background: #45475a;
-  color: #cdd6f4;
-  border-color: #585b70;
+.dark-toggle:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
